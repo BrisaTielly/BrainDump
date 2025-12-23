@@ -7,6 +7,7 @@ class Board(models.Model):
     #Cria o Id automaticamente...
     title = models.CharField(max_length=100,null=False, blank=False )
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='boards')
+    created_at = models.DateTimeField(auto_now_add=True)
 
 class Block(models.Model):
     board = models.ForeignKey(Board, on_delete=models.CASCADE, related_name='blocks')
