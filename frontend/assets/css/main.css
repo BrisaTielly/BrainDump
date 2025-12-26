@@ -1,0 +1,28 @@
+/* assets/css/main.css */
+
+/* :root e Resets ficam aqui */
+:root {
+  /* Paleta Profissional "Linear-like" */
+  --bg-app: #ffffff;
+  --bg-subtle: #f9fafb;
+  --border: #e5e7eb;
+  --border-hover: #d1d5db;
+  
+  --text-main: #111827;
+  --text-muted: #6b7280;
+  
+  --accent: #4f46e5;
+  --accent-fade: #eef2ff;
+  
+  --status-green: #10b981;
+  --status-gray: #9ca3af;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background-color: var(--bg-app);
+  font-family: 'Inter', sans-serif;
+  color: var(--text-main);
+  font-size: 14px;
+}
