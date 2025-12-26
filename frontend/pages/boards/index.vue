@@ -11,8 +11,12 @@
         </div>
 
         <div class="list-body">
-          <a href="#" v-for="board in boards" :key="board.id" class="list-row">
-            
+          <NuxtLink 
+          :to="`/boards/${board.id}`" 
+          v-for="board in boards" 
+          :key="board.id" 
+          class="list-row">
+              
             <div class="cell-name">
               <div class="file-icon">
                 <span class="mini-nodes"></span>
@@ -46,7 +50,7 @@
               <span class="btn-open">Abrir ↵</span>
             </div>
 
-          </a>
+          </NuxtLink>
         </div>
 
       </div>
@@ -75,34 +79,34 @@ export default {
     async loadBoards(){
       let response = await this.$axios.get('/boards')
         this.boards = response.data;
-        this.boards = [{ 
-          id: 1, 
-          title: 'Sprint 1: MVP BrainDump', 
-          desc: 'Fluxo principal de desenvolvimento',
-          nodes: 42, connections: 38, 
-          aiStatus: 'organized', lastMod: '2h atrás' 
-        },
-        { 
-          id: 2, 
-          title: 'Arquitetura de Banco de Dados', 
-          desc: 'Modelagem das tabelas e relações',
-          nodes: 12, connections: 15, 
-          aiStatus: 'draft', lastMod: 'Ontem' 
-        },
-        { 
-          id: 3, 
-          title: 'Estudos Vue.js & Design', 
-          desc: 'Anotações de cursos e referências',
-          nodes: 156, connections: 210, 
-          aiStatus: 'organized', lastMod: '23 out' 
-        },
-        { 
-          id: 4, 
-          title: 'Ideias Aleatórias', 
-          desc: 'Sem categoria definida',
-          nodes: 5, connections: 0, 
-          aiStatus: 'draft', lastMod: '10 out' 
-        }]
+        // this.boards = [{ 
+        //   id: 1, 
+        //   title: 'Sprint 1: MVP BrainDump', 
+        //   desc: 'Fluxo principal de desenvolvimento',
+        //   nodes: 42, connections: 38, 
+        //   aiStatus: 'organized', lastMod: '2h atrás' 
+        // },
+        // { 
+        //   id: 2, 
+        //   title: 'Arquitetura de Banco de Dados', 
+        //   desc: 'Modelagem das tabelas e relações',
+        //   nodes: 12, connections: 15, 
+        //   aiStatus: 'draft', lastMod: 'Ontem' 
+        // },
+        // { 
+        //   id: 3, 
+        //   title: 'Estudos Vue.js & Design', 
+        //   desc: 'Anotações de cursos e referências',
+        //   nodes: 156, connections: 210, 
+        //   aiStatus: 'organized', lastMod: '23 out' 
+        // },
+        // { 
+        //   id: 4, 
+        //   title: 'Ideias Aleatórias', 
+        //   desc: 'Sem categoria definida',
+        //   nodes: 5, connections: 0, 
+        //   aiStatus: 'draft', lastMod: '10 out' 
+        // }]
       }
     },
   }
