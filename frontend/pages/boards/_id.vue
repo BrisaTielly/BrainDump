@@ -4,9 +4,7 @@
   class="board-container"
   @mousemove="catchMouse"
   @mousedown="catchClick($event)">
-    X: {{ x }} | Y: {{ y }}
-      <h1>Board {{ boardId }}</h1>
-
+  
     <Block
     v-for="block in blocks"
     :key="block.id"
@@ -74,6 +72,8 @@ export default {
 .board-container {
   width: 100%;
   height: 100%;
+  background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: 50px 50px;
   background-color: #fafafa;
 }
 </style>

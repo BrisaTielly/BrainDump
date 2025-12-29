@@ -1,6 +1,5 @@
 <template>
   <div>   
-    <main class="main-content">
       <div class="data-list">
         
         <div class="list-header">
@@ -54,8 +53,6 @@
         </div>
 
       </div>
-    </main>
-
   </div>
 </template>
 
