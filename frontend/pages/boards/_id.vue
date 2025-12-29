@@ -3,9 +3,17 @@
   ref="boardContainer"
   class="board-container"
   @mousemove="catchMouse"
-  @click="catchClick">
+  @mousedown="catchClick($event)">
     X: {{ x }} | Y: {{ y }}
       <h1>Board {{ boardId }}</h1>
+    <div
+    v-for="dot in dots"
+    :key="dot.id"
+    :style="{ left: dot.x + 'px', top: dot.y + 'px' }"
+    @mousedown="handleMouseDown(dot, $event)"
+    class="canvas-dot">
+
+    </div>
   </div>
 </template>
 
@@ -14,7 +22,9 @@ export default {
   data(){
     return {
       x: 0,
-      y: 0
+      y: 0,
+      dots: [],
+      draggingDot: null
     }
   },
   computed: {
@@ -27,12 +37,28 @@ export default {
       this.x = event.clientX
       this.y = event.clientY
     },
-    catchClick(){
-      const dot = document.createElement('div')
-      dot.className = 'dot'
-      dot.style.top = this.y + 'px'
-      dot.style.left = this.x + 'px'
-      this.$refs.boardContainer.appendChild(dot)
+    catchClick(event){
+      if(event.target.closest('.canvas-dot')) return
+      this.dots.push({
+        x: this.x,
+        y: this.y,
+        id: (this.dots.length) + 1
+      })
+      console.log(this.dots)
+    },
+    handleMouseDown(dot, event){
+      console.log(event)
+      console.log('Segurando:', dot.x, dot.y)
+      this.draggingDot = dot
+      document.addEventListener('mouseup', this.handleDocumentMouseUp)
+    },
+    handleDocumentMouseUp(){
+      if(this.draggingDot){
+        this.draggingDot.x = this.x
+        this.draggingDot.y = this.y
+        this.draggingDot = null
+        document.removeEventListener('mouseup', this.handleDocumentMouseUp)
+      }
     }
   }
 }
@@ -44,7 +70,7 @@ export default {
   height: 100%;
 }
 
-.dot {
+.canvas-dot {
   background-color: var(--accent);
   width: 10px;
   height: 10px;
