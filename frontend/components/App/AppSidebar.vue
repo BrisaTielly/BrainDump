@@ -43,6 +43,8 @@ export default {
     display: flex;
     flex-direction: column;
     padding: 20px 16px;
+    position: relative;
+    z-index: 10;
   }
 
   .brand {

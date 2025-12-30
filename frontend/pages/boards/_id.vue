@@ -6,10 +6,10 @@
   @mousedown="catchClick($event)">
   
     <Block
-    v-for="block in blocks"
+    v-for="block in blocks"  
     :key="block.id"
     :style="{ left: block.x + 'px', top: block.y + 'px' }"
-    @mousedown.block="handleMouseDown(block, $event)">
+    @mousedown.stop="handleMouseDown(block, $event)">
 
     </Block>
   </div>

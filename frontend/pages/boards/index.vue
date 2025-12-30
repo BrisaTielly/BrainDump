@@ -1,5 +1,6 @@
 <template>
-  <div>   
+  <div>  
+    <!-- <NewBoardDialog/>  -->
       <div class="data-list">
         
         <div class="list-header">
@@ -58,10 +59,12 @@
 
 <script>
   import StatusBadge from '@/components/UI/StatusBadge.vue';
+  import NewBoardDialog from '~/components/Boards/NewBoardDialog.vue';
 export default {
   name: 'BoardList',
   components: {
-    StatusBadge
+    StatusBadge,
+    NewBoardDialog
   },
   data() {
     return {
@@ -104,7 +107,10 @@ export default {
         //   nodes: 5, connections: 0, 
         //   aiStatus: 'draft', lastMod: '10 out' 
         // }]
-      }
+      },
+    async createNewBoard(){
+      await this.$axios.post('boards/', {title: 'title'})
+    }
     },
   }
 
