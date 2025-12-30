@@ -16,6 +16,7 @@
             class="input" 
             placeholder="Ex: Planejamento Q4"
             autofocus
+            v-model="newBoardTitle"
           >
         </div>
 
@@ -42,7 +43,7 @@
         <button class="btn btn-ghost" @click="$emit('close')">
           Cancelar
         </button>
-        <button class="btn btn-primary" @click="$emit('save')">
+        <button class="btn btn-primary" @click="submit">
           Criar Quadro
         </button>
       </div>
@@ -55,9 +56,16 @@
 export default {
   name: 'NewBoardModal',
   data() {
-    return {}
+    return {
+      newBoardTitle: ''
+    }
   },
-  methods: {}
+  methods: {
+    submit(){
+      this.$emit('create-board', this.newBoardTitle)
+      this.newBoardTitle = ''
+    }
+  }
 }
 </script>
 

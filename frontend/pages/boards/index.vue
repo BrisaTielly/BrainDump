@@ -1,6 +1,10 @@
 <template>
   <div>  
-    <!-- <NewBoardDialog/>  -->
+    <NewBoardDialog
+    @create-board="createNewBoard"
+    @close="closeModal"
+    v-if="close"
+    /> 
       <div class="data-list">
         
         <div class="list-header">
@@ -75,6 +79,8 @@ export default {
   async mounted(){
     this.loadBoards();
   },
+  watch: {
+  },
   methods:{
     async loadBoards(){
       let response = await this.$axios.get('/boards')
@@ -108,8 +114,8 @@ export default {
         //   aiStatus: 'draft', lastMod: '10 out' 
         // }]
       },
-    async createNewBoard(){
-      await this.$axios.post('boards/', {title: 'title'})
+    async createNewBoard(newBoardTitle){
+      await this.$axios.post('boards/', {title: newBoardTitle})
     }
     },
   }
